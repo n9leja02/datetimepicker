@@ -12,8 +12,18 @@ export default function App() {
     setDate(currentDate);
   }
 
+  const toggle = () => {
+    setShow(prevShow => !prevShow);
+  }
+
   return (
     <View style={styles.container}>
+      <Pressable
+        onPress={toggle}>
+          <Text>
+            {date.getDate()}.{date.getMonth() + 1}.{date.getFullYear()}
+          </Text>
+      </Pressable>
       {show && Platform.OS === 'ios' && (
         <DateTimePicker
           style={{ width: 320 }}
@@ -24,7 +34,7 @@ export default function App() {
         />
       )}
       {show && Platform.OS === 'android' && (
-        <DateTimePicker          
+        <DateTimePicker
           mode={'date'}
           display="default"
           value={date}
